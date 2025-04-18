@@ -1,49 +1,32 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# node_modules와 같은 큰 용량의 파일/폴더 제외
 /node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
 /build
+/dist
+/.next
+/.cache
 
-# misc
-.DS_Store
-*.pem
+# 환경 설정 파일
+.env
+.env.local
+.env.*
 
-# debug
+# 로그 파일
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# 시스템 파일
+.DS_Store
+Thumbs.db
 
-# vercel
-.vercel
+# IDE 설정 파일
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# added from the code block
-echo ".Trash/" >> .gitignore
-echo "Downloads/" >> .gitignore
+# 임시 파일
+*.tmp
+*.temp
+*.swp
