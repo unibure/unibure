@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Nunito_Sans, Black_Han_Sans } from "@next/font/google";
+import { Nunito_Sans, Black_Han_Sans } from "next/font/google";
 import Header from "./components/header";
 import SideBar from "./components/sideBar";
 import Mouse from "./components/mouse";

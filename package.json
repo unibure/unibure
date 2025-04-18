@@ -1,7 +1,8 @@
 {
-  "name": "portfolio",
+  "name": "uni_bure.github.io",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://uni_bure.github.io/",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -9,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^14.2.15",
     "next": "^15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
