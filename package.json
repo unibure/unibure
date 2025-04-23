@@ -2,10 +2,12 @@
   "name": "uni_bure.github.io",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://uni_bure.github.io/",
+  "homepage": "https://unibure.github.io/uni_bure/",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "predeploy": "npm run build",
+    "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles",
     "start": "next start",
     "lint": "next lint"
   },

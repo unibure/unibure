@@ -5,7 +5,7 @@ const nextConfig = {
     unoptimized: true,
   },
   assetPrefix: "./",
-  basePath: "/uni_bure.github.io",
+  basePath: "/uni_bure.github.io/uni_bure/",
 };
 
 export default nextConfig;
