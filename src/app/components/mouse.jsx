@@ -6,13 +6,16 @@ export default function Mouse() {
   const cursorParent = useRef(null);
   const cursorChild = useRef(null);
   const [scale, setScale] = useState(1); // scale을 state로 관리
+  //중복 렌더링/업데이트 방지 위해 state 사용
   const [stage, setStage] = useState(""); // stage를 state로 관리
+  const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 }); // 마지막 마우스 위치 저장
 
   useEffect(() => {
     const handleCursorMove = (e) => {
       const cursorX = e.pageX - cursorParent.current.offsetWidth / 2;
       const cursorY = e.pageY - cursorParent.current.offsetHeight / 2;
       cursorParent.current.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+      setLastMousePos({ x: e.pageX, y: e.pageY }); // 마우스 위치 저장
 
       switch (e.target.getAttribute("data-cursor")) {
         case "title":
@@ -83,16 +86,25 @@ export default function Mouse() {
       });
     };
 
+    // 스크롤 시 커서 위치 갱신
+    const handleScroll = () => {
+      const cursorX = lastMousePos.x - cursorParent.current.offsetWidth / 2;
+      const cursorY = lastMousePos.y - cursorParent.current.offsetHeight / 2;
+      cursorParent.current.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    };
+
     window.addEventListener("mousemove", handleCursorMove);
     window.addEventListener("mouseleave", handleCursorDown);
     window.addEventListener("mouseover", handleCursorUp);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("mousemove", handleCursorMove);
       window.removeEventListener("mouseleave", handleCursorDown);
       window.removeEventListener("mouseover", handleCursorUp);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [scale, stage]); // 의존성 배열에 scale과 stage 추가
+  }, [scale, stage, lastMousePos]); // lastMousePos 의존성 추가
 
   return (
     <div className="mouse-circle" id="mouse-circle" ref={cursorParent}>

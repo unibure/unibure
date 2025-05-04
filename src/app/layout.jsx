@@ -3,7 +3,7 @@ import { Nunito_Sans, Black_Han_Sans } from "next/font/google";
 import Header from "./components/header";
 import SideBar from "./components/sideBar";
 import Mouse from "./components/mouse";
-
+import MainText from "./components/mainText";
 export const metadata = {
   title: "unibure portfolio",
   description: "unibure portfolio",
@@ -24,9 +24,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${nunitoSans.variable} ${blackHanSans.variable}`}>
+        {/* <img src={`${process.env.BASE_PATH}/images/back.jpg`} alt="me" /> */}
         <Header />
         <Mouse />
         <SideBar />
+        <MainText />
         {children}
       </body>
     </html>

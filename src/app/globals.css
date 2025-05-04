@@ -14,11 +14,12 @@
   :root {
     --background: #0e1318; /* 배경색: 매우 어두운 회색(거의 검정) */
     --foreground: #ededed; /* 전경색: 매우 밝은 회색(거의 흰색) */
+    --navy: #141c28
   }
 }
 
 /* body {background: var(--background); color:#fff;width: 100%; height: 100%; font-family: var(--ff-primary);} */
-body {background: #1f2937; color:#fff;width: 100%; height: 100%; font-family: var(--ff-primary);}
+body {background: var(--navy); color:#fff;width: 100%; height: 100%; font-family: var(--ff-primary); }
 
 /* common */
 .ff-primary {font-family: var(--ff-primary); }
@@ -35,7 +36,7 @@ body {background: #1f2937; color:#fff;width: 100%; height: 100%; font-family: va
 .wrap {position: relative;width: 100%;height: auto; padding-right: 50px;}
 
 /* mouse custom */
-#mouse-circle { position: absolute;top:0; left:0; will-change: transform; transform:translate3d(-100% , -100% , 0);pointer-events: none;z-index: 1;}
+#mouse-circle { position: absolute;top:0; left:0; will-change: transform; transform:translate3d(-100% , -100% , 0);pointer-events: none;z-index: 9999;}
 #mouse-circle .deco {position: relative; width: 20px;height: 20px; border-radius: 50%;  display: flex; align-items: center; justify-content: center; background-color: #05dfb0; --cursor-scale: 1; transform: scale3d(var(--cursor-scale), var(--cursor-scale) ,1); will-change: transform; transition: transform  0.15s ease-in-out, background-color 0.15s ease-in-out;  }
 #mouse-circle .deco::after {  content: attr(data-name); position: absolute;  color: #323232; font-weight: 700;font-size: 0.5rem;  margin-bottom:0.2rem;  transform: scale(0.45);  white-space: nowrap;}
 #mouse-circle.cursor-text-mode .deco {  background-color: rgb(12, 255, 101) !important;}
@@ -50,15 +51,15 @@ body {background: #1f2937; color:#fff;width: 100%; height: 100%; font-family: va
 
 
 /* intro header */
-#intro-header {padding:50px 150px 50px 100px; position: fixed; width: 100%; display: flex;flex-direction: column; justify-content: space-between; }
-#intro-header .header {display: grid; grid-template-columns: 1fr 4fr; gap: 5rem;}
+#intro-header {padding:50px 250px 50px 300px; width: 100%; display: flex;flex-direction: column; justify-content: space-between; position:relative; z-index:999;}
+#intro-header .header {display: grid; grid-template-columns: 1fr 4fr; gap: 10em;}
 #intro-header .header .top-head {}
 #intro-header .header .top-head .title { font-weight: 700;font-size: 3.5rem; padding-top: 2vh; position: relative;  line-height: 1.1;}
-#intro-header .header .top-head .title span {width: 100%; display: block; cursor: pointer;  -webkit-text-stroke: 1px #f9f7f1;  background-image: linear-gradient(0deg, #f9f7f1, #f9f7f1);  -webkit-background-clip: text;  color: transparent;  background-repeat: no-repeat;  transition: background-size 0.5s ease-in;  background-position: 0% 0%;  background-size: 0% 100%; font-family: var(--ff-secondary);}
+#intro-header .header .top-head .title span {width: 100%; display: block; cursor: pointer;  -webkit-text-stroke: 1px #f9f7f1;  background-image: linear-gradient(0deg, #fbcc41, #fbcc41);  -webkit-background-clip: text;  color: transparent;  background-repeat: no-repeat;  transition: background-size 0.5s ease-in;  background-position: 0% 0%;  background-size: 0% 100%; font-family: var(--ff-secondary);}
 #intro-header .header .top-head .title::before {opacity: 0.3; content:""; position: absolute; top:0; left:0; width: 100%; height: 5px; background-color: #fff; }
 #intro-header .header .top-head .title::after { content:""; position: absolute; top:0; left:0; width: 0; height: 5px; background-color: #fff; }
 
-#intro-header .header .gnb-nav { display: flex; align-items: center; justify-content: space-between; gap: 2vw; font-family: var(--ff-primary);}
+#intro-header .header .gnb-nav { display: flex; align-items: flex-start; justify-content: space-between; gap: 2vw; font-family: var(--ff-primary);}
 #intro-header .header .gnb-nav .gnb-btn {width: 70%;}
 #intro-header .header .gnb-nav .gnb-btn .page-go {width: 100%; padding: 2vh 0; display: flex; flex-direction: column;position: relative;}
 #intro-header .header .gnb-nav .gnb-btn .page-go::before {content:""; position: absolute; top:0; left:0; width: 0; height: 3px; background-color: #fff; }
@@ -82,19 +83,23 @@ body {background: #1f2937; color:#fff;width: 100%; height: 100%; font-family: va
   #intro-header .header .top-head {width: 100%;}
   #intro-header .header .gnb-nav {width: 100%;}
 }
+.main-typo { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; position:fixed; top:0; left:0; }
+.main-typo .parallax {overflow: hidden; white-space: nowrap; ;}
+.main-typo .parallax .scroller {display:flex;}
+.main-typo .parallax span {font-size: 200px; font-weight: 700; line-height: 1; white-space: nowrap; display: block; -webkit-text-stroke: 1px #f9f7f1; color:transparent;}
 
 
 /* about */
-section { width: 100%; height: auto; padding-inline:100px 200px; padding-block: 300px; position: relative; background: var(--background); position: absolute;  min-height: 100vh;}
-.section-layout {display: grid; grid-template-columns: 1fr 2.5fr ;gap :3em; align-items: flex-start;}
+article { width: 100%; height: auto;  position: absolute; top:100vh; background: rgba(14, 19, 24, 0.9);  position: absolute;  min-height: 100vh; backdrop-filter: blur(5px);}
+section {padding-block: 300px;padding-inline:300px 350px;}
+.section-layout {display: grid; grid-template-columns: 1fr 2.5fr ;gap :5em; align-items: flex-start;}
 /* .section-layout .tit {font-size: 5rem; opacity: 0; transform:translateX(200px);transition: all .5s; font-weight: 700; line-height: 1.2;} */
 .section-layout .tit {font-size: 5rem; font-weight: 700; line-height: 1.2;}
-#about {top:100vh;}
-#about .about-section {margin-bottom: 100px;}
+#about {}
 #about .about-section .about-cont {display: flex; flex-direction: column;gap: 30px; transition-delay: .3s; background: #1e1d1d; padding: 40px; border-radius: 20px;}
 #about .about-section .about-cont .desc {font-size: 1.5rem;  line-height: 1.8; }
 #about .about-section .about-cont .desc:last-child {transition-delay: .5s;}
-#about .about-section .about-cont .desc .point {background:#000; padding: 0 .3em; border-radius: 10px; display: inline-flex;}
+#about .about-section .about-cont .desc .point {background:#000; padding: .2em .3em; border-radius: 10px; }
 #about .about-detail {display: grid;grid-template-columns: 400px 1fr; gap: 50px;} 
 #about .about-detail .about-me-pic {width: 35%;} 
 #about .about-detail .about-me-pic img {border-radius: 10px;} 
@@ -107,11 +112,26 @@ section { width: 100%; height: auto; padding-inline:100px 200px; padding-block: 
 
 
 /* skill */
-#skill {top: 200vh; grid-template-columns: 1.5fr 2fr; }
-.skill-cont {display: grid; grid-template-columns:1fr; gap: 2em;} 
+/* #skill {background: var(--navy); } */
+.skill-cont {display: grid; grid-template-columns:1fr; gap: 4em;} 
 .skill-cont .skill-item {display: grid; grid-template-columns: 200px 1fr;}
 .skill-cont .skill-item .skill-tit {font-size: 2em; font-weight: 700;}
-.skill-cont .skill-item .skill-list {display: flex; gap: 1em;}
+.skill-cont .skill-item .skill-list {display: flex; gap: 1.7em;}
 .skill-cont .skill-item .skill-list .item {display: flex; flex-direction: column; align-items: center; gap: .5em;}
 .skill-cont .skill-item .skill-list .item .sbj {}
-.skill-cont .skill-item .skill-list .item .icon {background: #fff; border-radius: 10px; width: 60px;height: 60px; padding:.2em}
+.skill-cont .skill-item .skill-list .item .icon {background: #dedede; border-radius: 10px; width: 80px;height: 80px; padding:.2em}
+
+
+/* career */
+#career {}
+.career-cont {display: grid; grid-template-columns: 1fr; gap: 3em;}
+.career-cont .career-item {width: 100%; height: 100%; border-radius: 10px;  padding: 50px 40px; border:1px solid #fff;}
+.career-cont .career-item .head {padding-bottom: 2em;}
+.career-cont .career-item .head .sbj {font-size: 2.2em; font-weight: 700; padding-bottom: 1em;}
+.career-cont .career-item .head .year {font-size: 1.3em; display: block;}
+.career-cont .career-item .head .company {font-size: 1.5em; display: block;}
+.career-cont .career-item .desc {}
+.career-cont .career-item .desc .item {position: relative; gap: .5em; display: flex; align-items: flex-start; font-size: 1.4em; padding-bottom: .3em;}
+.career-cont .career-item .desc .item:before {content:"";  width: 10px; height: 10px; background-color: #fff; border-radius: 50%; display: inline-block; margin-top: .4em;}
+.career-cont .career-item .desc .item .sbj {}
+.career-cont .career-item .desc .item .desc {}
