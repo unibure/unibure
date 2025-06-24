@@ -1,21 +1,23 @@
 import "./globals.css";
-import { Nunito_Sans, Black_Han_Sans } from "next/font/google";
+import { Montserrat, Noto_Sans_KR } from "next/font/google";
 import Header from "./components/header";
 import SideBar from "./components/sideBar";
 import Mouse from "./components/mouse";
 import MainText from "./components/mainText";
+import Contact from "./components/contact";
+
 export const metadata = {
   title: "unibure portfolio",
   description: "unibure portfolio",
 };
-const nunitoSans = Nunito_Sans({
-  weight: ["200", "300", "400", "600", "700", "800", "900"],
+
+const notoSansKR = Noto_Sans_KR({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--ff-primary",
 });
-
-const blackHanSans = Black_Han_Sans({
-  weight: "400",
+const montserrat = Montserrat({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--ff-secondary",
 });
@@ -23,13 +25,14 @@ const blackHanSans = Black_Han_Sans({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${nunitoSans.variable} ${blackHanSans.variable}`}>
+      <body className={`${notoSansKR.variable} ${montserrat.variable}`}>
         {/* <img src={`${process.env.BASE_PATH}/images/back.jpg`} alt="me" /> */}
         <Header />
         <Mouse />
         <SideBar />
         <MainText />
         {children}
+        {/* <Contact /> */}
       </body>
     </html>
   );
