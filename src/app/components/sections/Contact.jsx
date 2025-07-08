@@ -1,14 +1,10 @@
-"use client";
+'use client';
 
 export default function Contact() {
   return (
     <section id="contact" className="contact-section section-layout">
       <h3 className="tit">Contact</h3>
-      <div className="contact-cont">
-        <div className="contact-form">
-          <form action=""></form>
-        </div>
-      </div>
+      <div className="contact-cont">{/* 연락처 내용 추가 예정 */}</div>
     </section>
   );
 }

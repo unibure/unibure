@@ -1,273 +1,54 @@
-"use client";
+import { motion } from 'framer-motion';
+import Visual from './components/sections/Visual';
+import About from './components/sections/About';
+import Skills from './components/sections/Skills';
+import Career from './components/sections/Career';
+import Project from './components/sections/Project';
+import Contact from './components/sections/Contact';
 
-import { useEffect, useRef } from "react";
-import { FaHeartPulse } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
+console.log('motion:', motion);
 
 export default function Home() {
-  const aniRefs = useRef([]);
-
-  useEffect(() => {
-    // 초기 상태 설정
-    aniRefs.current.forEach((ref, index) => {
-      if (ref) {
-        const delay = index * 0.2;
-        ref.style.opacity = 0;
-        ref.style.transform = "translateY(200px)";
-        ref.style.transition = `all 0.5s ease-in-out ${delay}s`;
-      }
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const index = aniRefs.current.findIndex((ref) => ref === entry.target);
-        const delay = index * 0.2;
-
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = "translateY(0)";
-          entry.target.style.transition = `all .5s ease ${delay}s`;
-        } else {
-          entry.target.style.opacity = 0;
-          entry.target.style.transform = "translateY(200px)";
-          entry.target.style.transition = `all .5s ease ${delay}s`;
-        }
-      });
-    });
-
-    aniRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      aniRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
-
-      observer.disconnect();
-    };
-  }, []);
-
   return (
-    <article>
-      <div className="description">
-        <section id="about">
-          <div className="about-section section-layout">
-            <h3 className="tit" ref={(el) => (aniRefs.current[0] = el)}>
-              About Me
-            </h3>
-            <div className="about-cont" ref={(el) => (aniRefs.current[1] = el)}>
-              <p className="desc">
-                안녕하세요. <br />
-                저는 현재 웹 개발자로 일하고 있는 이고운입니다. <br />
-                웹 개발을 좋아하고, 새로운 기술을 배우는 것을 좋아합니다. <br />
-              </p>
-              <p className="desc">
-                현재는 직접 웹 서비스를 기획하고, 개발 및 배포를 진행하고 있고
-                <span className="point">원활한 협업</span>과 <br />
-                <span className="point"> 적극적인 커뮤니케이션을</span> 바탕으로
-                사용자 경험을 지속적으로 개선해 나가고 있으며, <br /> 맡은 일에
-                애정을 갖고 <span className="point">책임감 있게</span> 임하고
-                있습니다.
-              </p>
-              <p className="desc">
-                주어진 역할 속에서 가치를 창출하고, 제 역량을 충분히 발휘하며{" "}
-                <br />
-                <span className="point">성장하는 개발자가</span> 되고자 합니다.
-              </p>
-            </div>
-          </div>
-          {/* <div className="about-detail" ref={(el) => (aniRefs.current[2] = el)}>
-          <div className="about-me">
-            <img
-              src={`${process.env.BASE_PATH}/images/about-me.png`}
-              alt="me"
-            />
-          </div>
-          <ul className="about-me-info">
-            <li className="item name">
-              <FaHeartPulse size={30} />
-              <span className="txt">이고운</span>
-            </li>
-            <li className="item git-page">
-              <FaGithub size={30} />
-              <span className="txt">unibure.github.io</span>
-            </li>
-            <li className="item email">
-              <IoIosMail size={30} />
-              <span className="txt">unibure@gmail.com</span>
-            </li>
-          </ul>
-        </div> */}
-        </section>
-
-        <section id="skill" className="skill-section section-layout">
-          <h3 className="tit" ref={(el) => (aniRefs.current[3] = el)}>
-            Skill & Tools
-          </h3>
-          <div className="skill-cont" ref={(el) => (aniRefs.current[4] = el)}>
-            <div className="skill-item">
-              <span className="skill-tit">Front End</span>
-              <ul className="skill-list">
-                <li className="item">
-                  <span className="sbj">HTML</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/html-logo.svg`}
-                      alt="html"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">CSS</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/css-logo.svg`}
-                      alt="css"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">JavaScript</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/js-logo.svg`}
-                      alt="js"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">React</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/react-logo.svg`}
-                      alt="react"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">Next.js</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/nextjs-logo.svg`}
-                      alt="nextjs"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">PHP</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/php-logo.svg`}
-                      alt="nextjs"
-                    />
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div className="skill-item">
-              <span className="skill-tit">Tools</span>
-              <ul className="skill-list">
-                <li className="item">
-                  <span className="sbj">Git</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/git-logo.svg`}
-                      alt="git"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">GitHub</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/github-logo.svg`}
-                      alt="github"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">Figma</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/figma-logo.svg`}
-                      alt="figma"
-                    />
-                  </span>
-                </li>
-                <li className="item">
-                  <span className="sbj">Tailwind</span>
-                  <span className="icon">
-                    <img
-                      src={`${process.env.BASE_PATH}/images/tailwind-logo.svg`}
-                      alt="tailwind"
-                    />
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section id="career" className="career-section section-layout">
-          <h3 className="tit" ref={(el) => (aniRefs.current[5] = el)}>
-            Career
-          </h3>
-          <div className="career-cont">
-            <div
-              className="career-item"
-              ref={(el) => {
-                aniRefs.current[6] = el;
-              }}
-            >
-              <div className="head">
-                <h4 className="sbj">WORK EXPERIENCE</h4>
-                <span className="year">2022.12 ~ 재직중</span>
-                <span className="company">
-                  웹 에이전시 알지비커뮤니케이션즈
-                </span>
-              </div>
-              <ul className="desc">
-                <li className="item">
-                  HTML, CSS, JavaScript 기반의 웹 퍼블리싱
-                </li>
-                <li className="item">PHP, 그누보드 기반의 홈페이지 개발</li>
-                <li className="item">
-                  PHP, React, Next.js 기반의 전자카탈로그 개발
-                </li>
-                <li className="item">홈페이지 기획 및 디자인</li>
-                <li className="item">홈페이지 유지보수</li>
-              </ul>
-            </div>
-            <div
-              className="career-item"
-              ref={(el) => {
-                aniRefs.current[7] = el;
-              }}
-            >
-              <div className="head">
-                <h4 className="sbj">EDUCATION</h4>
-                <span className="year">2022.06 ~ 2022.12</span>
-                <span className="company">그린 아카데미 - 우수상 수료</span>
-              </div>
-              <ul className="desc">
-                <li className="item">
-                  (디지털디자인) UI/UX 반응형 웹디자인 & 웹퍼블리셔(디자인&코딩)
-                  양성
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* 추가예정 */}
-        {/* <section id="project" className="section-layout"></section> */}
-      </div>
-      <section id="contact" className="contact-section section-layout">
-        <h3 className="tit">Contact</h3>
-        <div className="contact-cont"></div>
-      </section>
+    <article className="main-content">
+      {/* <motion.span
+        className="scroll-down"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+      >
+        <svg width="47" height="63" viewBox="0 0 47 63" fill="none">
+          <path
+            d="M21.8431 44.8671C22.7581 45.7814 24.2413 45.7814 25.1566 44.8671L32.1878 37.8405C33.1034 36.9255 33.1041 35.4414 32.1891 34.5258C31.2741 33.6102 29.7903 33.6099 28.8747 34.5249L23.4997 39.8958L18.1256 34.5249C17.2099 33.6099 15.7259 33.6102 14.8109 34.5258C13.8959 35.4414 13.8964 36.9255 14.812 37.8405L21.8431 44.8671Z"
+            fill="#CFCECE"
+          />
+          <path
+            d="M23.5 22.2962C22.1194 22.2962 21 21.1769 21 19.7962C21 18.4155 22.1194 17.2959 23.5 17.2959C24.8806 17.2959 26 18.4152 26 19.7959C26 21.1766 24.8806 22.2962 23.5 22.2962Z"
+            fill="#CFCECE"
+          />
+          <path
+            d="M21 28.598C21 29.9786 22.1194 31.098 23.5 31.098C24.8806 31.098 26 29.9786 26 28.598C26 27.2173 24.8806 26.0977 23.5 26.0977C22.1194 26.0977 21 27.2173 21 28.598Z"
+            fill="#CFCECE"
+          />
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M23.5 0.25293C10.5558 0.25293 0.0625 10.7462 0.0625 23.6904V39.3155C0.0625 52.2596 10.5558 62.753 23.5 62.753C36.4441 62.753 46.9375 52.2596 46.9375 39.3155V23.6904C46.9375 10.7462 36.4441 0.25293 23.5 0.25293ZM4.75 23.6904C4.75 13.3351 13.1447 4.94043 23.5 4.94043C33.8553 4.94043 42.25 13.3351 42.25 23.6904V39.3155C42.25 49.6708 33.8553 58.0655 23.5 58.0655C13.1447 58.0655 4.75 49.6708 4.75 39.3155V23.6904Z"
+            fill="#CFCECE"
+          />
+        </svg>
+      </motion.span> */}
+      <img
+        src={`${process.env.BASE_PATH}/images/background-space.jpg`}
+        alt="background-space"
+        className="back-img"
+      />
+      <Visual />
+      <About />
+      <Skills />
+      <Career />
+      <Project />
+      <Contact />
     </article>
   );
 }

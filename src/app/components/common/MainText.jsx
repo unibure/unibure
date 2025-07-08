@@ -1,5 +1,5 @@
-"use client";
-import { useRef, useEffect } from "react";
+'use client';
+import { useRef, useEffect } from 'react';
 import {
   motion,
   useScroll,
@@ -8,8 +8,8 @@ import {
   useMotionValue,
   useVelocity,
   useAnimationFrame,
-} from "framer-motion";
-import { wrap } from "@motionone/utils";
+} from 'framer-motion';
+import { wrap } from '@motionone/utils';
 
 // 무한 반복 텍스트 컴포넌트
 function InfiniteText({ children, baseVelocity = 100 }) {
@@ -29,7 +29,7 @@ function InfiniteText({ children, baseVelocity = 100 }) {
 
   // baseX와 velocityFactor를 곱해서 x값을 %로 변환 (무한 반복 효과)
   // const x = useTransform(baseX, (v) => `${v % 100}%`);
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+  const x = useTransform(baseX, v => `${wrap(-20, -45, v)}%`);
 
   // 방향 전환을 위한 ref
   const directionFactor = useRef(1);
@@ -56,7 +56,7 @@ function InfiniteText({ children, baseVelocity = 100 }) {
     // 한 줄로 텍스트가 이어지도록 스타일 적용
     <motion.div
       className="parallax"
-      style={{ overflow: "hidden", whiteSpace: "nowrap" }}
+      style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
     >
       <motion.div className="scroller" style={{ x }}>
         {/* 텍스트를 여러 번 반복해서 무한 루프처럼 보이게 함 */}
@@ -79,42 +79,3 @@ export default function MainText() {
     </div>
   );
 }
-
-// export default function MainText() {
-//   const carouselRef = useRef();
-//   const { scrollY } = useScroll();
-
-//   // 스크롤 값이 0~500일 때 x축 -300~0, 1000일 때 300으로 이동
-//   const x = useTransform(scrollY, [0, 500, 1000], [-300, 0, 300]);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const scrollValue = scrollY.get();
-//       const mainTypo = carouselRef.current;
-
-//       if (mainTypo) {
-//         // const opacity = 1 - scrollValue / 500;
-//         // const scale = 1 - scrollValue / 1000;
-//         // mainTypo.style.opacity = Math.max(0, opacity);
-//         // mainTypo.style.transform = `scale(${Math.max(0.5, scale)})`;
-//       }
-//     };
-
-//     scrollY.onChange(handleScroll);
-//     return () => scrollY.clearListeners();
-//   }, [scrollY]);
-
-//   return (
-//     <div className="main-typo" ref={carouselRef}>
-//       <motion.span
-//         style={{ x }}
-//         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-//       >
-//         UNIBURE PORTFOLIO
-//       </motion.span>
-//       {/* <motion.span style={{ x }}>
-//         안녕하세요 프론트엔드 개발자 이고운입니다.
-//       </motion.span> */}
-//     </div>
-//   );
-// }

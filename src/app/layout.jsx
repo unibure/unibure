@@ -1,38 +1,34 @@
-import "./globals.css";
-import { Montserrat, Noto_Sans_KR } from "next/font/google";
-import Header from "./components/header";
-import SideBar from "./components/sideBar";
-import Mouse from "./components/mouse";
-import MainText from "./components/mainText";
-import Contact from "./components/contact";
+import './globals.css';
+import { Montserrat, Noto_Sans_KR } from 'next/font/google';
+import Header from './components/common/Header';
+import SideBar from './components/common/SideBar';
+import Mouse from './components/common/Mouse';
+import MainText from './components/common/MainText';
 
 export const metadata = {
-  title: "unibure portfolio",
-  description: "unibure portfolio",
+  title: 'unibure portfolio',
+  description: 'unibure portfolio',
 };
 
 const notoSansKR = Noto_Sans_KR({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-  variable: "--ff-primary",
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+  variable: '--ff-primary',
 });
 const montserrat = Montserrat({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-  variable: "--ff-secondary",
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+  variable: '--ff-secondary',
 });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={`${notoSansKR.variable} ${montserrat.variable}`}>
-        {/* <img src={`${process.env.BASE_PATH}/images/back.jpg`} alt="me" /> */}
         <Header />
-        <Mouse />
-        <SideBar />
         <MainText />
+
         {children}
-        {/* <Contact /> */}
       </body>
     </html>
   );
